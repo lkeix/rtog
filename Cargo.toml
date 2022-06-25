@@ -1,0 +1,14 @@
+[package]
+name = "rtog"
+version = "0.1.0"
+authors = ["lkeix <ai.kanaria.ai@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+
+[dev-dependencies]
+speculate = "*"
+rstest = "*"
