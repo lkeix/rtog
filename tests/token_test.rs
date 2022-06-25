@@ -9,7 +9,7 @@ use token::*;
 speculate! {
   describe "Check constant tokens"  {
     fn test_constant_token() {
-      assert_eq!(ILLEGAL, "";)
+      assert_eq!(ILLEGAL, "")
     }
   }
 }
