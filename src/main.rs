@@ -1,6 +1,7 @@
 mod token;
+use token::token::token_identifier::*;
 
 fn main() {
-    println!("{}", token::token::token_identifier::ILLEGAL);
+    println!("{}", ILLEGAL);
     println!("Hello, world!");
 }

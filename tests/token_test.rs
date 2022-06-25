@@ -1,15 +1,17 @@
-extern crate rstest;
 #[cfg(test)]
+extern crate rstest;
 extern crate speculate;
 
 use rstest::*;
+use rtog;
 use speculate::speculate;
-use token::token_identifier::*;
 
 speculate! {
   describe "Check constant tokens"  {
+    #[rstest]
     fn test_constant_token() {
-      assert_eq!(ILLEGAL, "")
+      assert_eq!(rtog::token::token::token_identifier::ILLEGAL, "ILLEGAL");
+      assert_eq!(rtog::token::token::token_identifier::EOF, "EOF");
     }
   }
 }
