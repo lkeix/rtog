@@ -4,7 +4,7 @@ extern crate speculate;
 
 use rstest::*;
 use speculate::speculate;
-use token::*;
+use token::token_identifier::*;
 
 speculate! {
   describe "Check constant tokens"  {
