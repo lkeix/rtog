@@ -16,6 +16,13 @@ pub mod token_identifier {
   pub const QUO: &str = "/";
   pub const REM: &str = "%";
 
+  pub const AND: &str = "&";
+  pub const OR: &str = "|";
+  pub const XOR: &str = "^";
+  pub const SHL: &str = "<<";
+  pub const SHR: &str = ">>";
+  pub const AND_NOT: &str = "&^";
+
   pub const ADD_ASSIGN: &str = "+=";
   pub const SUB_ASSIGN: &str = "-=";
   pub const MUL_ASSIGN: &str = "*=";
@@ -92,10 +99,33 @@ pub mod token_identifier {
 }
 
 pub struct Token {
+  pub tokens: Vec<String>,
   pub token: i64,
 }
 
 impl Token {
+  pub fn new(self) -> Self {
+    return Token {
+      tokens: vec![
+        String::from(token_identifier::ILLEGAL),
+        String::from(token_identifier::EOF),
+        String::from(token_identifier::COMMENT),
+        String::from(token_identifier::IDENT),
+        String::from(token_identifier::INT),
+        String::from(token_identifier::FLOAT),
+        String::from(token_identifier::IMAG),
+        String::from(token_identifier::CHAR),
+        String::from(token_identifier::STRING),
+        String::from(token_identifier::ADD),
+        String::from(token_identifier::SUB),
+        String::from(token_identifier::MUL),
+        String::from(token_identifier::QUO),
+        String::from(token_identifier::REM),
+      ],
+      token: 0,
+    };
+  }
+
   pub fn String(self) -> String {
     let s: &str = "";
     return String::from(s);

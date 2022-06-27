@@ -27,6 +27,13 @@ speculate! {
       assert_eq!(QUO, "/");
       assert_eq!(REM, "%");
 
+      assert_eq!(AND, "&");
+      assert_eq!(OR, "|");
+      assert_eq!(XOR, "^");
+      assert_eq!(SHL, "<<");
+      assert_eq!(SHR, ">>");
+      assert_eq!(AND_NOT, "&^");
+
       assert_eq!(ADD_ASSIGN, "+=");
       assert_eq!(SUB_ASSIGN, "-=");
       assert_eq!(MUL_ASSIGN, "*=");
@@ -107,8 +114,9 @@ speculate! {
     fn test_token_string() {
       let tkn = Token{
         token: 1,
-      };
-      assert_eq!("", tkn.String())
+        tokens: vec![],
+      }.new();
+      assert_eq!("", tkn.String());
     }
   }
 }
