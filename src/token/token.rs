@@ -90,3 +90,14 @@ pub mod token_identifier {
   pub const VAR: &str = "var";
   pub const TILDE: &str = "~";
 }
+
+pub struct Token {
+  pub token: i64,
+}
+
+impl Token {
+  pub fn String(self) -> String {
+    let s: &str = "";
+    return String::from(s);
+  }
+}

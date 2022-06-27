@@ -4,6 +4,7 @@ extern crate speculate;
 
 use rstest::*;
 use rtog::token::token::token_identifier::*;
+use rtog::token::token::Token;
 use speculate::speculate;
 
 speculate! {
@@ -99,6 +100,15 @@ speculate! {
       assert_eq!(TYPE, "type");
       assert_eq!(VAR, "var");
       assert_eq!(TILDE, "~");
+    }
+  }
+  describe "check token string" {
+    #[rstest]
+    fn test_token_string() {
+      let tkn = Token{
+        token: 1,
+      };
+      assert_eq!("", tkn.String())
     }
   }
 }
