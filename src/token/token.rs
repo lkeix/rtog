@@ -121,7 +121,17 @@ impl Token {
         String::from(token_identifier::MUL),
         String::from(token_identifier::QUO),
         String::from(token_identifier::REM),
-      ],
+        String::from(token_identifier::AND),
+        String::from(token_identifier::OR),
+        String::from(token_identifier::XOR),
+        String::from(token_identifier::SHL),
+        String::from(token_identifier::SHR),
+        String::from(token_identifier::AND_NOT),
+        String::from(token_identifier::ADD_ASSIGN),
+        String::from(token_identifier::OR_ASSIGN),
+        String::from(token_identifier::XOR_ASSIGN),
+        String::from(token_identifier::MUL_ASSIGN),
+        ],
       token: 0,
     };
   }
