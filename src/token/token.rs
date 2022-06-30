@@ -131,13 +131,16 @@ impl Token {
         String::from(token_identifier::OR_ASSIGN),
         String::from(token_identifier::XOR_ASSIGN),
         String::from(token_identifier::MUL_ASSIGN),
+        String::from(token_identifier::QUO_ASSIGN),
+        String::from(token_identifier::AND_ASSIGN),
+        String::from(token_identifier::OR_ASSIGN),
+        String::from(token_identifier::XOR_ASSIGN),
         ],
       token: 0,
     };
   }
 
   pub fn String(self) -> String {
-    let s: &str = "";
-    return String::from(s);
+      return String::from(self.token.to_string());
   }
 }
