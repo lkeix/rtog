@@ -190,6 +190,14 @@ impl Token {
   }
 
   pub fn String(self) -> String {
-      return String::from(self.token.to_string());
+      let tkn: usize = self.token as usize;
+      let mut s: String = String::from("");
+      if 0 <= self.token && tkn < self.tokens.len() {
+        s = self.tokens.get(tkn).unwrap().to_string();
+      }
+      if s == "" {
+          s = String::from("token(".to_string() + &self.token.to_string() + &")".to_string());
+      }
+      return s;
   }
 }
