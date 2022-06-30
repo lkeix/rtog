@@ -113,10 +113,10 @@ speculate! {
     #[rstest]
     fn test_token_string() {
       let tkn = Token{
-        token: 1,
+        token: 0,
         tokens: vec![],
       }.new();
-      assert_eq!("", tkn.String());
+      assert_eq!(ILLEGAL, tkn.String());
     }
   }
 }
