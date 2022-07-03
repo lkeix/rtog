@@ -200,4 +200,9 @@ impl Token {
       }
       return s;
   }
+
+  pub fn Precedence(self) -> i64 {
+      let mut res: i64 = 0;
+      return res
+  }
 }

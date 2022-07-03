@@ -119,4 +119,15 @@ speculate! {
       assert_eq!(ILLEGAL, tkn.String());
     }
   }
+
+  describe "check precedence" {
+    #[rstest]
+    fn test_precedenence() {
+        let tkn = Token{
+            token: 0,
+            tokens: vec![],
+        }.new();
+        assert_eq!(0, tkn.Precedence());
+    }
+  }
 }
