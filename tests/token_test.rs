@@ -141,5 +141,41 @@ speculate! {
         tkn.token = 31;
         assert_eq!(2, tkn.Precedence());
     }
+
+    fn gen_token() -> Token {
+        return Token{
+           token: 0,
+           tokens: vec![],
+        }.new();
+    }
+
+    #[rstest]
+    fn test_precedenence_eql_neq_lss_leq_gtr_geq() {
+        let mut tkn: Token = gen_token();
+        tkn.token = 36;
+        let eql: i64 = tkn.Precedence(); 
+        let mut tkn: Token = gen_token();
+        tkn.token = 41;
+        let neq: i64 = tkn.Precedence();
+        let mut tkn: Token = gen_token();
+        tkn.token = 37;
+        let lss: i64 = tkn.Precedence();
+        let mut tkn: Token = gen_token();
+        tkn.token = 42;
+        let leq: i64 = tkn.Precedence();
+        let mut tkn: Token = gen_token();
+        tkn.token = 38;
+        let gtr: i64 = tkn.Precedence();
+        let mut tkn: Token = gen_token();
+        tkn.token = 43;
+        let geq: i64 = tkn.Precedence();
+
+        assert_eq!(3, eql);
+        assert_eq!(3, neq);
+        assert_eq!(3, lss);
+        assert_eq!(3, leq);
+        assert_eq!(3, gtr);
+        assert_eq!(3, geq);
+    }
   }
 }
