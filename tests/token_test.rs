@@ -4,6 +4,7 @@ extern crate speculate;
 
 use rstest::*;
 use rtog::token::token::token_identifier::*;
+use rtog::token::token::TokenIndex;
 use rtog::token::token::Token;
 use speculate::speculate;
 
@@ -122,12 +123,23 @@ speculate! {
 
   describe "check precedence" {
     #[rstest]
-    fn test_precedenence() {
-        let tkn = Token{
+    fn test_precedenence_lor() {
+        let mut tkn = Token{
             token: 0,
             tokens: vec![],
         }.new();
-        assert_eq!(0, tkn.Precedence());
+        tkn.token = 32; // 32 is LOR in TokenIndex
+        assert_eq!(1, tkn.Precedence());
+    }
+
+    #[rstest]
+    fn test_precedenence_land() {
+        let mut tkn = Token{
+            token: 0,
+            tokens: vec![],
+        }.new();
+        tkn.token = 31;
+        assert_eq!(2, tkn.Precedence());
     }
   }
 }
