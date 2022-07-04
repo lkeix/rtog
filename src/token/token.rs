@@ -1,3 +1,7 @@
+use num;
+use num_derive::FromPrimitive;
+use num_traits::FromPrimitive;
+
 pub mod token_identifier {
   pub const ILLEGAL: &str = "ILLEGAL";
   pub const EOF: &str = "EOF";
@@ -98,6 +102,94 @@ pub mod token_identifier {
   pub const TILDE: &str = "~";
 }
 
+#[derive(FromPrimitive)]
+pub enum TokenIndex {
+  ILLEGAL = 0,
+  EOF,
+  COMMENT,
+  IDENT,
+  INT,
+  FLOAT,
+  IMAG,
+  CHAR,
+  STRING,
+  ADD,
+  SUB,
+  MUL,
+  QUO,
+  REM,
+  AND,
+  OR,
+  XOR,
+  SHL,
+  SHR,
+  AND_NOT,
+  ADD_ASSIGN,
+  SUB_ASSIGN,
+  MUL_ASSIGN,
+  QUO_ASSIGN,
+  REM_ASSIGN,
+  AND_ASSIGN,
+  OR_ASSIGN,
+  XOR_ASSIGN,
+  SHL_ASSIGN,
+  SHR_ASSIGN,
+  AND_NOT_ASSIGN,
+  LAND,
+  LOR,
+  ARROW,
+  INC,
+  DEC,
+  EQL,
+  LSS,
+  GTR,
+  ASSIGN,
+  NOT,
+  NEQ,
+  LEQ,
+  GEQ,
+  DEFINE,
+  ELLIPSIS,
+  LPAREN,
+  LBRACK,
+  LBRACE,
+  COMMA,
+  PERIOD,
+  RPAREN,
+  RBRACK,
+  RBRACE,
+  SEMICOLON,
+  COLON,
+  BREAK,
+  CASE,
+  CHAN,
+  CONST,
+  CONTINUE,
+
+  DEFAULE,
+  DEFER,
+  ELSE,
+  FALLTHROUGH,
+  FOR,
+  FUNC,
+  GO,
+  GOTO,
+  IF,
+  IMPORT,
+
+  INTERFACE,
+  MAP,
+  PACKAGE,
+  RANGE,
+  RETURN,
+  SELECT,
+  STRUCT,
+  SWITCH,
+  TYPE,
+  VAR,
+  TILDE
+}
+
 pub struct Token {
   pub tokens: Vec<String>,
   pub token: i64,
@@ -196,13 +288,21 @@ impl Token {
         s = self.tokens.get(tkn).unwrap().to_string();
       }
       if s == "" {
-          s = String::from("token(".to_string() + &self.token.to_string() + &")".to_string());
+          s = String::from("token(".to_string() + &(self.token as i64).to_string() + &")".to_string());
       }
       return s;
   }
 
   pub fn Precedence(self) -> i64 {
-      let mut res: i64 = 0;
-      return res
+      let tkn: TokenIndex = FromPrimitive::from_i64(self.token).unwrap();
+      match tkn {
+          TokenIndex::LOR => {
+              return 1
+          },
+          _ => {
+              return 0
+          }
+      }
+      return 0;
   }
 }
