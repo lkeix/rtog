@@ -4,7 +4,6 @@ extern crate speculate;
 
 use rstest::*;
 use rtog::token::token::token_identifier::*;
-use rtog::token::token::TokenIndex;
 use rtog::token::token::Token;
 use speculate::speculate;
 
@@ -177,5 +176,66 @@ speculate! {
         assert_eq!(3, gtr);
         assert_eq!(3, geq);
     }
+  }
+
+  fn gen_token() -> Token {
+      return Token{
+          token: 0,
+          tokens: vec![],
+      }.new()
+  }
+
+  #[rstest]
+  fn test_precedence_add_sub_or_xor() {
+      let mut tkn: Token = gen_token();
+      tkn.token = 9;
+      let add: i64 = tkn.Precedence();
+      let mut tkn: Token = gen_token();
+      tkn.token = 10;
+      let sub: i64 = tkn.Precedence();
+      let mut tkn: Token = gen_token();
+      tkn.token = 15;
+      let or: i64 = tkn.Precedence();
+      let mut tkn: Token = gen_token();
+      tkn.token = 16;
+      let xor: i64 = tkn.Precedence();
+
+      assert_eq!(4, add);
+      assert_eq!(4, sub);
+      assert_eq!(4, or);
+      assert_eq!(4, xor);
+  }
+
+  #[rstest]
+  fn test_precedence_mul_quo_rem_shl_shr_and_andnot() {
+      let mut tkn: Token = gen_token();
+      tkn.token = 11;
+      let mul: i64 = tkn.Precedence();
+      let mut tkn: Token = gen_token();
+      tkn.token = 12;
+      let quo: i64 = tkn.Precedence();
+      let mut tkn: Token = gen_token();
+      tkn.token = 13;
+      let rem: i64 = tkn.Precedence();
+      let mut tkn: Token = gen_token();
+      tkn.token = 17;
+      let shl: i64 = tkn.Precedence();
+      let mut tkn: Token = gen_token();
+      tkn.token = 18;
+      let shr: i64 = tkn.Precedence();
+      let mut tkn: Token = gen_token();
+      tkn.token = 14;
+      let and: i64 = tkn.Precedence();
+      let mut tkn: Token = gen_token();
+      tkn.token = 19;
+      let andnot: i64 = tkn.Precedence();
+
+      assert_eq!(5, mul);
+      assert_eq!(5, quo);
+      assert_eq!(5, rem);
+      assert_eq!(5, shl);
+      assert_eq!(5, shr);
+      assert_eq!(5, and);
+      assert_eq!(5, andnot);
   }
 }
