@@ -299,10 +299,35 @@ impl Token {
           TokenIndex::LOR => {
               return 1
           },
+          TokenIndex::LAND => {
+              return 2
+          },
+          TokenIndex::EQL |
+              TokenIndex::NEQ |
+              TokenIndex::LSS |
+              TokenIndex::LEQ |
+              TokenIndex::GTR |
+              TokenIndex::GEQ => {
+                  return 3
+              },
+          TokenIndex::ADD |
+              TokenIndex::SUB |
+              TokenIndex::OR |
+              TokenIndex::XOR => {
+                  return 4
+              },
+          TokenIndex::MUL |
+              TokenIndex::QUO |
+              TokenIndex::REM |
+              TokenIndex::SHL |
+              TokenIndex::SHR |
+              TokenIndex::AND |
+              TokenIndex::AND_NOT => {
+                  return 5
+              },
           _ => {
               return 0
           }
       }
-      return 0;
   }
 }
