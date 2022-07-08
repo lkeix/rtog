@@ -1,6 +1,6 @@
-use num;
 use num_derive::FromPrimitive;
 use num_traits::FromPrimitive;
+use std::collections::HashMap;
 
 pub mod token_identifier {
   pub const ILLEGAL: &str = "ILLEGAL";
@@ -193,6 +193,7 @@ pub enum TokenIndex {
 pub struct Token {
   pub tokens: Vec<String>,
   pub token: i64,
+  pub keywords: HashMap<String, i64>
 }
 
 impl Token {
@@ -278,6 +279,7 @@ impl Token {
         String::from(token_identifier::TILDE),
         ],
       token: 0,
+      keywords: HashMap::new()
     };
   }
 
