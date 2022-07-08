@@ -6,6 +6,7 @@ use rstest::*;
 use rtog::token::token::token_identifier::*;
 use rtog::token::token::Token;
 use speculate::speculate;
+use std::collections::HashMap;
 
 speculate! {
   describe "Check constant tokens"  {
@@ -112,9 +113,10 @@ speculate! {
   describe "check token string" {
     #[rstest]
     fn test_token_string() {
-      let tkn = Token{
+      let tkn: Token = Token{
         token: 0,
         tokens: vec![],
+        keywords: HashMap::new()
       }.new();
       assert_eq!(ILLEGAL, tkn.String());
     }
@@ -123,9 +125,10 @@ speculate! {
   describe "check precedence" {
     #[rstest]
     fn test_precedenence_lor() {
-        let mut tkn = Token{
+        let mut tkn: Token = Token{
             token: 0,
             tokens: vec![],
+            keywords: HashMap::new()
         }.new();
         tkn.token = 32; // 32 is LOR in TokenIndex
         assert_eq!(1, tkn.Precedence());
@@ -133,9 +136,10 @@ speculate! {
 
     #[rstest]
     fn test_precedenence_land() {
-        let mut tkn = Token{
+        let mut tkn: Token = Token{
             token: 0,
             tokens: vec![],
+            keywords: HashMap::new()
         }.new();
         tkn.token = 31;
         assert_eq!(2, tkn.Precedence());
@@ -143,8 +147,9 @@ speculate! {
 
     fn gen_token() -> Token {
         return Token{
-           token: 0,
-           tokens: vec![],
+            token: 0,
+            tokens: vec![],
+            keywords: HashMap::new()
         }.new();
     }
 
@@ -182,7 +187,8 @@ speculate! {
       return Token{
           token: 0,
           tokens: vec![],
-      }.new()
+          keywords: HashMap::new()
+      }.new();
   }
 
   #[rstest]
@@ -205,6 +211,7 @@ speculate! {
       assert_eq!(4, or);
       assert_eq!(4, xor);
   }
+
 
   #[rstest]
   fn test_precedence_mul_quo_rem_shl_shr_and_andnot() {
@@ -237,5 +244,14 @@ speculate! {
       assert_eq!(5, shr);
       assert_eq!(5, and);
       assert_eq!(5, andnot);
+  }
+
+  #[rstest]
+  fn test_new() {
+      let mut tkn: Token = Token{
+          token: 0,
+          tokens: vec![],
+          keywords: HashMap::new()
+      }.new();
   }
 }
