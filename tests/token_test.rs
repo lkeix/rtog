@@ -253,5 +253,42 @@ speculate! {
           tokens: vec![],
           keywords: HashMap::new()
       }.new();
+
+      let ans_tokens: Vec<String> = vec![
+          BREAK.to_string(),
+          CASE.to_string(),
+          CHAN.to_string(),
+          CONST.to_string(),
+          CONTINUE.to_string(),
+          DEFAULE.to_string(),
+          DEFER.to_string(),
+          ELSE.to_string(),
+          FALLTHROUGH.to_string(),
+          FOR.to_string(),
+          FUNC.to_string(),
+          GO.to_string(),
+          GOTO.to_string(),
+          IF.to_string(),
+          IMPORT.to_string(),
+          INTERFACE.to_string(),
+          MAP.to_string(),
+          PACKAGE.to_string(),
+          RANGE.to_string(),
+          RETURN.to_string(),
+          SELECT.to_string(),
+          STRUCT.to_string(),
+          SWITCH.to_string(),
+          TYPE.to_string(),
+          VAR.to_string()
+      ];
+
+      let mut tokens: Vec<String> = vec![];
+      for (keyword, _) in tkn.keywords {
+          tokens.push(keyword);
+      }
+      tokens.sort();
+      for i in 0..ans_tokens.len() {
+          assert_eq!(ans_tokens[i], tokens[i]);
+      }
   }
 }
