@@ -283,12 +283,93 @@ speculate! {
       ];
 
       let mut tokens: Vec<String> = vec![];
-      for (keyword, _) in tkn.keywords {
+      for (keyword, i) in tkn.keywords {
           tokens.push(keyword);
+          println!("{}", i);
       }
       tokens.sort();
       for i in 0..ans_tokens.len() {
           assert_eq!(ans_tokens[i], tokens[i]);
       }
+  }
+
+  #[rstest]
+  fn test_lookup() {
+      let tkn: Token = gen_token();
+      let brk_idx: i64 = tkn.Lookup("break".to_string());
+      let tkn: Token = gen_token();
+      let case_idx: i64 = tkn.Lookup("case".to_string());
+      let tkn: Token = gen_token();
+      let chan_idx: i64 = tkn.Lookup("chan".to_string());
+      let tkn: Token = gen_token();
+      let const_idx: i64 = tkn.Lookup("const".to_string());
+      let tkn: Token = gen_token();
+      let continue_idx: i64 = tkn.Lookup("continue".to_string());
+      let tkn: Token = gen_token();
+      let default_idx: i64 = tkn.Lookup("default".to_string());
+      let tkn: Token = gen_token();
+      let defer_idx: i64 = tkn.Lookup("defer".to_string());
+      let tkn: Token = gen_token();
+      let else_idx: i64 = tkn.Lookup("else".to_string());
+      let tkn: Token = gen_token();
+      let fallthrough_idx: i64 = tkn.Lookup("fallthrough".to_string());
+      let tkn: Token = gen_token();
+      let for_idx: i64 = tkn.Lookup("for".to_string());
+      let tkn: Token = gen_token();
+      let func_idx: i64 = tkn.Lookup("func".to_string());
+      let tkn: Token = gen_token();
+      let go_idx: i64 = tkn.Lookup("go".to_string());
+      let tkn: Token = gen_token();
+      let goto_idx: i64 = tkn.Lookup("goto".to_string());
+      let tkn: Token = gen_token();
+      let if_idx: i64 = tkn.Lookup("if".to_string());
+      let tkn: Token = gen_token();
+      let import_idx: i64 = tkn.Lookup("import".to_string());
+      let tkn: Token = gen_token();
+      let interface_idx: i64 = tkn.Lookup("interface".to_string());
+      let tkn: Token = gen_token();
+      let map_idx: i64 = tkn.Lookup("map".to_string());
+      let tkn: Token = gen_token();
+      let package_idx: i64 = tkn.Lookup("package".to_string());
+      let tkn: Token = gen_token();
+      let range_idx: i64 = tkn.Lookup("range".to_string());
+      let tkn: Token = gen_token();
+      let return_idx: i64 = tkn.Lookup("return".to_string());
+      let tkn: Token = gen_token();
+      let select_idx: i64 = tkn.Lookup("select".to_string());
+      let tkn: Token = gen_token();
+      let struct_idx: i64 = tkn.Lookup("struct".to_string());
+      let tkn: Token = gen_token();
+      let switch_idx: i64 = tkn.Lookup("switch".to_string());
+      let tkn: Token = gen_token();
+      let type_idx: i64 = tkn.Lookup("type".to_string());
+      let tkn: Token = gen_token();
+      let var_idx: i64 = tkn.Lookup("var".to_string());
+
+      assert_eq!(51, brk_idx);
+      assert_eq!(52, case_idx);
+      assert_eq!(53, chan_idx);
+      assert_eq!(54, const_idx);
+      assert_eq!(55, continue_idx);
+      assert_eq!(56, default_idx);
+      assert_eq!(57, defer_idx);
+      assert_eq!(58, else_idx);
+      assert_eq!(59, fallthrough_idx);
+      assert_eq!(60, for_idx);
+      assert_eq!(61, func_idx);
+      assert_eq!(62, go_idx);
+      assert_eq!(63, goto_idx);
+      assert_eq!(64, if_idx);
+      assert_eq!(65, import_idx);
+      assert_eq!(66, interface_idx);
+      assert_eq!(67, map_idx);
+      assert_eq!(68, package_idx);
+      assert_eq!(69, range_idx);
+      assert_eq!(70, return_idx);
+      assert_eq!(71, select_idx);
+      assert_eq!(72, struct_idx);
+      assert_eq!(73, switch_idx);
+      assert_eq!(74, type_idx);
+      assert_eq!(75, var_idx);
   }
 }
