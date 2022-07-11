@@ -102,6 +102,8 @@ pub mod token_identifier {
   pub const TILDE: &str = "~";
 }
 
+const keyword_num: usize = 25;
+
 #[derive(FromPrimitive)]
 pub enum TokenIndex {
   ILLEGAL = 0,
@@ -160,6 +162,7 @@ pub enum TokenIndex {
   RBRACE,
   SEMICOLON,
   COLON,
+
   BREAK,
   CASE,
   CHAN,
@@ -187,6 +190,7 @@ pub enum TokenIndex {
   SWITCH,
   TYPE,
   VAR,
+
   TILDE
 }
 
@@ -198,8 +202,7 @@ pub struct Token {
 
 impl Token {
   pub fn new(self) -> Self {
-    return Token {
-      tokens: vec![
+    let tokens: Vec<String> = vec![
         String::from(token_identifier::ILLEGAL),
         String::from(token_identifier::EOF),
         String::from(token_identifier::COMMENT),
@@ -277,9 +280,26 @@ impl Token {
         String::from(token_identifier::TYPE),
         String::from(token_identifier::VAR),
         String::from(token_identifier::TILDE),
-        ],
+    ];
+    let mut begin: usize = 0;
+    let mut end: usize = 0;
+
+    for i in 0..tokens.len() {
+        if tokens[i] == token_identifier::BREAK {
+            begin = i;
+        }
+        if tokens[i] == token_identifier::VAR {
+            end = i;
+        }
+    }
+    let mut keywords: HashMap<String, i64> = HashMap::with_capacity(end - begin);
+    for i in begin..end+1 {
+        keywords.insert(tokens[i].clone(), i as i64);
+    }
+    return Token {
+      tokens: tokens,
       token: 0,
-      keywords: HashMap::new()
+      keywords: keywords
     };
   }
 
