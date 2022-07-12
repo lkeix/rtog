@@ -352,4 +352,17 @@ impl Token {
           }
       }
   }
+
+  pub fn Lookup(self, ident: String) -> i64 {
+      let mut ident_index = 0;
+      for i in 0..self.tokens.len() {
+          if self.tokens.get(i).unwrap() == token_identifier::IDENT {
+              ident_index = i as i64;
+          }
+      }
+      if !self.keywords.contains_key(&ident) {
+          return ident_index;
+      }
+      return *self.keywords.get(&ident).unwrap();
+  }
 }
