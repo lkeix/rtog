@@ -372,4 +372,24 @@ speculate! {
       assert_eq!(74, type_idx);
       assert_eq!(75, var_idx);
   }
+
+  #[rstest]
+  fn test_is_literal() {
+      let mut tkn: Token = gen_token();
+      let mut ident: i64 = 0;
+      let mut add: i64 = 0;
+      for (i, token) in tkn.tokens.iter().enumerate() {
+          if token == IDENT {
+              ident = i as i64;
+          }
+          if token == ADD {
+              add = i as i64;
+          }
+      }
+      tkn.token = ident;
+      assert_eq!(tkn.is_literal(), true);
+      let mut tkn: Token = gen_token();
+      tkn.token = add;
+      assert_eq!(tkn.is_literal(), false);
+  }
 }
