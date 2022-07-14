@@ -365,4 +365,18 @@ impl Token {
       }
       return *self.keywords.get(&ident).unwrap();
   }
+
+  pub fn is_literal(self) -> bool {
+      let mut literal_begin: i64 = 0;
+      let mut literal_end: i64 = 0;
+      for i in 0..self.tokens.len() {
+          if self.tokens.get(i).unwrap() == token_identifier::IDENT {
+              literal_begin = i as i64;
+          }
+          if self.tokens.get(i).unwrap() == token_identifier::STRING {
+              literal_end = i as i64;
+          }
+      }
+      return literal_begin <= self.token && self.token <= literal_end;
+  }
 }
