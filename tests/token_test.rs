@@ -392,4 +392,40 @@ speculate! {
       tkn.token = add;
       assert_eq!(tkn.is_literal(), false);
   }
+
+  #[rstest]
+  fn test_is_operator() {
+      let mut tkn: Token = gen_token();
+      let mut string: i64 = 0;
+      let mut add: i64 = 0;
+      let mut colon: i64 = 0;
+      let mut brk: i64 = 0;
+      for (i, token) in tkn.tokens.iter().enumerate() {
+          if token == STRING {
+              string = i as i64;
+          }
+          if token == ADD {
+              add = i as i64;
+          }
+          if token == COLON {
+              colon = i as i64;
+          }
+          if token == BREAK {
+              brk = i as i64;
+          }
+      }
+      let mut add_tkn: Token = gen_token();
+      add_tkn.token = add;
+      let mut string_tkn: Token = gen_token();
+      string_tkn.token = string;
+      let mut colon_tkn: Token = gen_token();
+      colon_tkn.token = colon;
+      let mut brk_tkn: Token = gen_token();
+      brk_tkn.token = brk;
+
+      assert_eq!(false, string_tkn.is_operator());
+      assert_eq!(true, add_tkn.is_operator());
+      assert_eq!(true, colon_tkn.is_operator());
+      assert_eq!(false, brk_tkn.is_operator());
+  }
 }

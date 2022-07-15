@@ -379,4 +379,7 @@ impl Token {
       }
       return literal_begin <= self.token && self.token <= literal_end;
   }
+  pub fn is_operator(self) -> bool {
+      return true;
+  }
 }
