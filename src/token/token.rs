@@ -380,6 +380,16 @@ impl Token {
       return literal_begin <= self.token && self.token <= literal_end;
   }
   pub fn is_operator(self) -> bool {
-      return true;
+      let mut operator_begin: i64 = 0;
+      let mut operator_end: i64 = 0;
+      for i in 0..self.tokens.len() {
+          if self.tokens.get(i).unwrap() == token_identifier::ADD {
+              operator_begin = i as i64;
+          }
+          if self.tokens.get(i).unwrap() == token_identifier::COLON {
+              operator_end = i as i64;
+          }
+      }
+      return operator_begin <= self.token && self.token <= operator_end;
   }
 }
