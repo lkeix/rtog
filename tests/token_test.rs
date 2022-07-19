@@ -395,7 +395,7 @@ speculate! {
 
   #[rstest]
   fn test_is_operator() {
-      let mut tkn: Token = gen_token();
+      let tkn: Token = gen_token();
       let mut string: i64 = 0;
       let mut add: i64 = 0;
       let mut colon: i64 = 0;
@@ -427,5 +427,49 @@ speculate! {
       assert_eq!(true, add_tkn.is_operator());
       assert_eq!(true, colon_tkn.is_operator());
       assert_eq!(false, brk_tkn.is_operator());
+  }
+
+  #[rstest]
+  fn test_is_keyword() {
+      let tkn: Token = gen_token();
+
+      let mut colon: i64 = 0;
+      let mut brk: i64 = 0;
+      let mut var: i64 = 0;
+      let mut tilde: i64 = 0;
+
+      for (i, token) in tkn.tokens.iter().enumerate() {
+          if token == COLON {
+              colon = i as i64;
+          }
+
+          if token == BREAK {
+              brk = i as i64;
+          }
+
+          if token == VAR {
+              var = i as i64;
+          }
+
+          if token == BREAK {
+              brk = i as i64;
+          }
+      }
+
+      let mut colon_tkn: Token = gen_token();
+      let mut brk_tkn: Token = gen_token();
+      let mut var_tkn: Token = gen_token();
+      let mut tilde_tkn: Token = gen_token();
+
+      colon_tkn.token = colon;
+      brk_tkn.token = brk;
+      var_tkn.token = var;
+      tilde_tkn.token = tilde;
+
+      assert_eq!(false, colon_tkn.is_keyword());
+      assert_eq!(true, brk_tkn.is_keyword());
+      assert_eq!(true, var_tkn.is_keyword());
+      assert_eq!(false, tilde_tkn.is_keyword());
+
   }
 }
