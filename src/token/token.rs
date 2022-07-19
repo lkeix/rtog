@@ -394,6 +394,18 @@ impl Token {
   }
 
   pub fn is_keyword(self) -> bool {
-      return true;
+      let mut keyword_begin: i64 = 0;
+      let mut keyword_end: i64 = 0;
+
+      for i in 0..self.tokens.len() {
+          if self.tokens.get(i).unwrap() == token_identifier::BREAK {
+              keyword_begin = i as i64;
+          }
+          if self.tokens.get(i).unwrap() == token_identifier::VAR {
+              keyword_end = i as i64;
+          }
+      }
+
+      return keyword_begin <= self.token && self.token <= keyword_end;
   }
 }
