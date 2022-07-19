@@ -392,4 +392,8 @@ impl Token {
       }
       return operator_begin <= self.token && self.token <= operator_end;
   }
+
+  pub fn is_keyword(self) -> bool {
+      return true;
+  }
 }
